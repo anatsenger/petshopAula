@@ -5,19 +5,31 @@ public class Dono {
     private String email;
     private Endereco endereco;
     private int id;
-    private static int codigo;
 
     public Dono(String nome, String CPF, String email, Endereco endereco) {
-        codigo++;
-        this.id = codigo;
         this.nome = nome;
         this.CPF = CPF;
         this.email = email;
         this.endereco = endereco;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
     public Dono(String nome, Endereco endereco) {
-        codigo++;
         this.nome = nome;
         this.endereco = endereco;
     }

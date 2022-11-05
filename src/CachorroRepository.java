@@ -3,11 +3,14 @@ import java.util.Objects;
 public class CachorroRepository {
 
     // count para controlar a posição dos cachorros cadastrados
-    private int count = 0;
-    private Cachorro[] cachorrosCadastrados = new Cachorro[2];
+    private static int count = 0;
+    private static Cachorro[] cachorrosCadastrados = new Cachorro[100];
+
+    // contador estatico para atribuir os ids...
+    private static int sequence = 1;
 
     public void cadastra(Cachorro cachorro){
-
+        setId(cachorro);
         redimensionaArray();
 
         if (Objects.nonNull(cachorro) && Objects.nonNull(cachorro.getDono())) {
@@ -16,6 +19,14 @@ public class CachorroRepository {
         } else {
             System.err.println("Cachorro null ou sem Dono!");
         }
+    }
+
+    private void setId(Cachorro cachorro) {
+        cachorro.setId(sequence);
+        cachorro.getDono().setId(sequence);
+        cachorro.getDono().getEndereco();
+        cachorro.getDono().getEndereco().setId(sequence);
+        sequence ++;
     }
 
     private void redimensionaArray() {

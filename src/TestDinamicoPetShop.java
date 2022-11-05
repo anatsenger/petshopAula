@@ -47,6 +47,7 @@ public class TestDinamicoPetShop {
 
         System.out.println("Digite sua rua:");
         String rua = scanner.next();
+        scanner.nextLine();
 
         System.out.println("Digite o numero da sua casa:");
         int numero = scanner.nextInt();
