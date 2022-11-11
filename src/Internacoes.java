@@ -1,9 +1,6 @@
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class Internacoes {
-
     private final int NUMERO_MAXIMO_VAGAS = 10;
 
     private Set<Animal> animaisInternados = new HashSet<>();
@@ -15,7 +12,6 @@ public class Internacoes {
             System.err.println("Não há vagas");
         }
     }
-
     public void mostraCachorrosInternados(){
         System.out.println("-----------------ANIMAIS DOENTES--------------------");
         for (Animal animal: animaisInternados) {
