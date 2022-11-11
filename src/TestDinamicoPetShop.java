@@ -61,25 +61,6 @@ public class TestDinamicoPetShop {
         System.out.println("Digite seu estado ende mora:");
         String estado = scanner.next();
 
-        System.out.println("######## Agora é hora de informar os dados do seu Cãozinho... ########");
-
-        System.out.println("Digite o nome do seu Cão:");
-        String nomeCachorro = scanner.next();
-
-        System.out.println("Digite a raca:");
-        String racaString = scanner.next().toLowerCase();
-        RacaCachorro raca;
-        if(racaString.equals("pit bull")) {
-            raca = RacaCachorro.PIT_BULL;
-        } else if (racaString.equals("pastor alemão")) {
-            raca = RacaCachorro.PASTOR_ALEMAO;
-        } else {
-            raca = RacaCachorro.VIRA_LATA;
-        }
-
-        System.out.println("Digite a idade:");
-        int idade = scanner.nextInt();
-
         Endereco endereco = new Endereco();
         endereco.setRua(rua);
         endereco.setNumero(numero);
@@ -89,12 +70,64 @@ public class TestDinamicoPetShop {
 
         Dono dono = new Dono(nome, endereco);
 
-        Cachorro cachorro = new Cachorro(dono);
-        cachorro.setNome(nomeCachorro);
-        cachorro.setRaca(raca);
-        cachorro.setIdade(idade);
+        System.out.println("######## Agora é hora de informar os dados do seu Animalzinho... ########");
 
-        animalRepository.cadastra(cachorro);
+        System.out.println("É cachorro ou gato?");
+        TipoAnimal typeAnimal = TipoAnimal.valueOf(scanner.next().toUpperCase());
+        if(typeAnimal == TipoAnimal.CÃO) typeAnimal = TipoAnimal.CACHORRO;
+
+        System.out.println("Digite a idade do seu pet:");
+        int idade = scanner.nextInt();
+
+        if(typeAnimal == TipoAnimal.CACHORRO) {
+            System.out.println("Digite o nome do seu Cão:");
+            String nomeCachorro = scanner.next();
+
+            System.out.println("Digite a raca:");
+            String racaCaoString = scanner.next().toLowerCase();
+            RacaCachorro racaCao;
+            if (racaCaoString.equals("pit bull")) {
+                racaCao = RacaCachorro.PIT_BULL;
+            } else if (racaCaoString.equals("pastor alemão")) {
+                racaCao = RacaCachorro.PASTOR_ALEMAO;
+            } else {
+                racaCao = RacaCachorro.VIRA_LATA;
+            }
+
+            Cachorro cachorro = new Cachorro(dono);
+            cachorro.setNome(nomeCachorro);
+            cachorro.setRaca(racaCao);
+            cachorro.setIdade(idade);
+
+            animalRepository.cadastra(cachorro);
+        }
+
+        //SIAMES,
+        //MAINECONN,
+        //VIRA_LATA_JAPONES
+
+        if(typeAnimal == TipoAnimal.GATO) {
+            System.out.println("Digite o nome do seu Gato:");
+            String nomeGato = scanner.next();
+
+            System.out.println("Digite a raca:");
+            String racaGatoString = scanner.next().toLowerCase();
+            RacaGato racaGato;
+            if (racaGatoString.equals("siames")) {
+                racaGato = RacaGato.SIAMES;
+            } else if (racaGatoString.equals("maineconn")) {
+                racaGato = RacaGato.MAINECONN;
+            } else {
+                racaGato = RacaGato.VIRA_LATA_JAPONES;
+            }
+            Gato gato = new Gato(dono);
+            gato.setNome(nomeGato);
+            gato.setRaca(racaGato);
+            gato.setIdade(idade);
+
+            animalRepository.cadastra(gato);
+        }
+
         System.out.println("CADASTRO FINALIZADO COM SUCESSO!! ACESSE A OPÇÃO 2 PARA CONSULTAR");
     }
 }
