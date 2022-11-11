@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class TestDinamicoPetShop {
 
-    private static final CachorroRepository cachorroRepository = new CachorroRepository();
+    private static final AnimalRepository ANIMAL_REPOSITORY = new AnimalRepository();
 
     public static void main(String[] args) {
         final int SAIR_DO_SISTEMA = 4;
@@ -19,25 +19,25 @@ public class TestDinamicoPetShop {
 
             switch (opcaoSelecionada){
                 case 1:
-                    cadastra(scanner, cachorroRepository);
+                    cadastra(scanner, ANIMAL_REPOSITORY);
                     break;
                 case 2:
-                    cachorroRepository.imprimeCachorrosCadastrados();
+                    ANIMAL_REPOSITORY.imprimeAnimaisCadastrados();
                     break;
                 case 3:
-                    cachorroRepository.limpaCadastro();
+                    ANIMAL_REPOSITORY.limpaCadastro();
                     break;
                 case 4:
                     System.out.println("Saindo do Sistema");
                     break;
                 default:
-                    System.out.println("Op??o invalida");
+                    System.out.println("Opãoo invalida");
             }
 
         }while (opcaoSelecionada != SAIR_DO_SISTEMA);
     }
-    private static void cadastra(Scanner scanner, CachorroRepository cachorroRepository) {
-        System.out.println("######## CADASTRO DE CÃES ########");
+    private static void cadastra(Scanner scanner, AnimalRepository animalRepository) {
+        System.out.println("######## CADASTRO DE ANIMAIS ########");
         System.out.println("######## Informe seus dados pessoais... ########");
 
         System.out.println("Digite seu nome:");
@@ -67,7 +67,15 @@ public class TestDinamicoPetShop {
         String nomeCachorro = scanner.next();
 
         System.out.println("Digite a raca:");
-        String raca = scanner.next();
+        String racaString = scanner.next().toLowerCase();
+        RacaCachorro raca;
+        if(racaString.equals("pit bull")) {
+            raca = RacaCachorro.PIT_BULL;
+        } else if (racaString.equals("pastor alemão")) {
+            raca = RacaCachorro.PASTOR_ALEMAO;
+        } else {
+            raca = RacaCachorro.VIRA_LATA;
+        }
 
         System.out.println("Digite a idade:");
         int idade = scanner.nextInt();
@@ -86,7 +94,7 @@ public class TestDinamicoPetShop {
         cachorro.setRaca(raca);
         cachorro.setIdade(idade);
 
-        cachorroRepository.cadastra(cachorro);
+        animalRepository.cadastra(cachorro);
         System.out.println("CADASTRO FINALIZADO COM SUCESSO!! ACESSE A OPÇÃO 2 PARA CONSULTAR");
     }
 }
